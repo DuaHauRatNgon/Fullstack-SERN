@@ -18,29 +18,8 @@ const salt = bcrypt.genSaltSync(10);
 // }
 
 //c2 chi tiet
-// let createNewUser = async (data) => {
-//     return new Promise(async(resolve, reject) => {
-//         try {
-//             let hasshPasswordFromBcrypt = await hashUserPassword(data.password);
-//             await db.User.create({
-//                 email: data.email,
-//                 password: hasshPasswordFromBcrypt,
-//                 firstName: data.firstName,
-//                 lastName: data.lastName,
-//                 address: data.address,
-//                 phonenumber: data.phonenumber,
-//                 gender: data.gender === '1' ? true : false,
-//                 roleId: data.roleId,
-//             })
-//             resolve("tao moi nguoi dung thanh cong")
-//         } catch (e) {
-//             reject(e);
-//         }
-//     })
-// }
-
 let createNewUser = async (data) => {
-    // return new Promise(async(resolve, reject) => {
+    return new Promise(async(resolve, reject) => {
         try {
             let hasshPasswordFromBcrypt = await hashUserPassword(data.password);
             await db.User.create({
@@ -53,11 +32,11 @@ let createNewUser = async (data) => {
                 gender: data.gender === '1' ? true : false,
                 roleId: data.roleId,
             })
-            // resolve("tao moi nguoi dung thanh cong")
+            resolve("tao moi nguoi dung thanh cong")
         } catch (e) {
-            // reject(e);
+            reject(e);
         }
-    // })
+    })
 }
 
 let hashUserPassword = async (password) => {
@@ -72,6 +51,12 @@ let hashUserPassword = async (password) => {
     })
 }
 
+let getAllUser = async () => {
+    let users = await db.User.findAll();
+    return users;
+}
+
 module.exports = {
-    createNewUser: createNewUser
+    createNewUser: createNewUser,
+    getAllUser: getAllUser
 }
