@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>display CRUD</title>
+    <title>Show</title>
     <style>
         table,
         td,
@@ -35,6 +35,7 @@
             <th>Lastname</th>
             <th>Phone</th>
             <th>Address</th>
+            <th>Action</th>
         </tr>
         <% for(var i=0; i < dataTable.length; i++) { %>
            <tr>
@@ -43,7 +44,10 @@
              <td><%= dataTable[i].lastName %></td>
              <td><%= dataTable[i].phone %></td>
              <td><%= dataTable[i].address %></td>
-
+             <td>
+                <a href="/crud-update?id=<%= dataTable[i].id %>" class="btn-edit" type="button">Update</a>
+                <a href="/delete-crud?id=<%= dataTable[i].id %>" class="btn-delete" type="button">Delete</a>
+             </td>
            </tr>
         <% } %>
         </table>
